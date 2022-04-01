@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Artwork{% endblock %}
+
+{% block body %}
+    <h1>Artwork</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ artwork.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ artwork.title }}</td>
+            </tr>
+            <tr>
+                <th>Ref</th>
+                <td>{{ artwork.ref }}</td>
+            </tr>
+            <tr>
+                <th>Width</th>
+                <td>{{ artwork.width }}</td>
+            </tr>
+            <tr>
+                <th>Height</th>
+                <td>{{ artwork.height }}</td>
+            </tr>
+            <tr>
+                <th>IsToSold</th>
+                <td>{{ artwork.isToSold ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>IsSold</th>
+                <td>{{ artwork.isSold ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ artwork.price }}</td>
+            </tr>
+            <tr>
+                <th>CreationDate</th>
+                <td>{{ artwork.creationDate ? artwork.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ artwork.createdAt ? artwork.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ artwork.description }}</td>
+            </tr>
+            <tr>
+                <th>IsInCorpus</th>
+                <td>{{ artwork.isInCorpus ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ artwork.slug }}</td>
+            </tr>
+            <tr>
+                <th>MainImage</th>
+                <td>{{ artwork.mainImage }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_artwork_index') }}">back to list</a>
+
+    <a href="{{ path('app_artwork_edit', {'id': artwork.id}) }}">edit</a>
+
+    {{ include('artwork/_delete_form.html.twig') }}
+{% endblock %}
