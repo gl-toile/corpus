@@ -45,7 +45,8 @@
 
 	<div class="menu-inner-shadow"></div>
 
-	<ul class="menu-inner py-1">
+	<ul
+		class="menu-inner py-1">
 		<!-- Dashboard -->
 		<li class="menu-item active">
 			<a href="{{ path('app_artwork_index') }}" class="menu-link">
@@ -53,7 +54,28 @@
 				<div data-i18n="Analytics">Artworks</div>
 			</a>
 		</li>
+        <!-- Dashboard -->
+		<li class="menu-item active">
+			<a href="{{ path('app_user_index') }}" class="menu-link">
+				<i class="menu-icon tf-icons bx bx-home-circle"></i>
+				<div data-i18n="Analytics">Utilisateurs</div>
+			</a>
+		</li>
+        <!-- Dashboard -->
+		<li class="menu-item active">
+			<a href="{{ path('app_corpus_index') }}" class="menu-link">
+				<i class="menu-icon tf-icons bx bx-home-circle"></i>
+				<div data-i18n="Analytics">Corpus</div>
+			</a>
+		</li>
+        <!-- Dashboard -->
+		<li class="menu-item active">
+			<a href="{{ path('app_category_index') }}" class="menu-link">
+				<i class="menu-icon tf-icons bx bx-home-circle"></i>
+				<div data-i18n="Analytics">Categories</div>
+			</a>
+		</li>
 	</ul>
-		
+
 </aside>
 <!-- / Menu -->

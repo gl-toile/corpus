@@ -9,16 +9,16 @@ use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Collection|null find($id, $lockMode = null, $lockVersion = null)
- * @method Collection|null findOneBy(array $criteria, array $orderBy = null)
- * @method Collection[]    findAll()
- * @method Collection[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Corpus|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Corpus|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Corpus[]    findAll()
+ * @method Corpus[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class CorpusRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Collection::class);
+        parent::__construct($registry, Corpus::class);
     }
 
     /**

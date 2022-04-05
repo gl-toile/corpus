@@ -3,10 +3,14 @@
 namespace App\DataFixtures;
 
 use Faker\Factory;
-use App\Entity\Artwork;
 use App\Entity\User;
+use App\Entity\Corpus;
+use App\Entity\Artwork;
+use App\Entity\Category;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class AppFixtures extends Fixture
 {
@@ -17,8 +21,10 @@ class AppFixtures extends Fixture
         $randomUser->setEmail("mail@test.com");
         $randomUser->setFirstName($faker->firstName());
         $randomUser->setLastName($faker->lastName());
+        $randomUser->setPassword("mypassword");
         $randomUser->setInstagramAccount("@" . $randomUser->getFirstName() . $randomUser->getLastName());
         $randomUser->setAbout($faker->text());
+        $manager->persist($randomUser);
 
         $categories = [
             'Dessin',
@@ -26,7 +32,26 @@ class AppFixtures extends Fixture
             'Sculpture'
         ];
 
-        foreach ($categories as $category) {
+        $corpusCollection = new ArrayCollection();
+
+        for($i = 0 ; $i < 5 ; $i++){
+            $randomCorpus = new Corpus();
+            $randomCorpus->setTitle("collection " . $faker->name());
+            $randomCorpus->setSlug($faker->slug());
+            $randomCorpus->setDescription($faker->text());
+            $corpusCollection[0] = $randomCorpus; 
+            $manager->persist($randomCorpus);
+            $manager->flush();
+        }
+
+        foreach($categories as $categoryName) {
+            $category = new Category();
+            $category->setTitle($categoryName);
+            $category->setDescription($faker->text());
+            $category->setSlug($faker->slug());
+            $manager->persist($category);
+            $manager->flush();
+
             for ($i = 0; $i < 20; $i++) {
                 $artwork = new Artwork();
                 $artwork->setTitle("Portrait de " . $faker->name());
@@ -41,6 +66,15 @@ class AppFixtures extends Fixture
                 $artwork->setMainImage("https://picsum.photos/200/300?sig=" . $i);
                 $artwork->setUser($randomUser);
                 $artwork->setCategory($category);
+
+                if(random_int(0, 100) < 35){
+                    for($j = 0 ; $j < mt_rand(0, count($corpusCollection)) ; $j++){
+                        $corpus = $corpusCollection[0];
+                        if(!$corpusCollection->contains($corpus)){
+                            $artwork->addCorpus($corpus);
+                        }
+                    }
+                }
 
                 $manager->persist($artwork);
                 $manager->flush();
