@@ -1,0 +1,50 @@
+<!-- Basic Bootstrap Table -->
+<div class="card">
+	<h5 class="card-header">Toutes les oeuvres</h5>
+	<div class="table-responsive text-nowrap">
+		<table class="table">
+			<thead>
+				<tr>
+					<th></th>
+					<th>Title</th>
+					<th>Ref</th>
+					<th>Description</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody class="table-border-bottom-0">
+				{% for artwork in artworks %}
+					<tr>
+						<td><img src="{{ artwork.mainImage }}" style="max-height:50px"></td>
+						<td>
+							<strong>{{ artwork.title }}</strong>
+						</td>
+						<td>{{ artwork.ref }}</td>
+						<td>{{ artwork.description | slice(0, 15) }}...</td>
+						<td>
+							<div class="dropdown">
+								<button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+									<i class="bx bx-dots-vertical-rounded"></i>
+								</button>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="{{ path('app_artwork_show', {'id': artwork.id}) }}">
+										<i class="bx bx-show-alt me-1"></i>
+										Détails
+                                    </a>
+									<a class="dropdown-item" href="{{ path('app_artwork_edit', {'id': artwork.id}) }}">
+										<i class="bx bx-edit me-1"></i>
+										Modifier</a>
+								</div>
+							</div>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="15">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+<!--/ Basic Bootstrap Table -->

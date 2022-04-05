@@ -1,59 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Artwork index{% endblock %}
+{% block title %}Artwork index
+{% endblock %}
 
 {% block body %}
-    <h1>Artwork index</h1>
+ <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Artworks /</span> Index</h4>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Ref</th>
-                <th>Width</th>
-                <th>Height</th>
-                <th>IsToSold</th>
-                <th>IsSold</th>
-                <th>Price</th>
-                <th>CreationDate</th>
-                <th>CreatedAt</th>
-                <th>Description</th>
-                <th>IsInCorpus</th>
-                <th>Slug</th>
-                <th>MainImage</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for artwork in artworks %}
-            <tr>
-                <td>{{ artwork.id }}</td>
-                <td>{{ artwork.title }}</td>
-                <td>{{ artwork.ref }}</td>
-                <td>{{ artwork.width }}</td>
-                <td>{{ artwork.height }}</td>
-                <td>{{ artwork.isToSold ? 'Yes' : 'No' }}</td>
-                <td>{{ artwork.isSold ? 'Yes' : 'No' }}</td>
-                <td>{{ artwork.price }}</td>
-                <td>{{ artwork.creationDate ? artwork.creationDate|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ artwork.createdAt ? artwork.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ artwork.description }}</td>
-                <td>{{ artwork.isInCorpus ? 'Yes' : 'No' }}</td>
-                <td>{{ artwork.slug }}</td>
-                <td><img src="{{ artwork.mainImage }}"/></td>
-                <td>
-                    <a href="{{ path('app_artwork_show', {'id': artwork.id}) }}">show</a>
-                    <a href="{{ path('app_artwork_edit', {'id': artwork.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="15">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	{{ include('artwork/_show_table.html.twig') }}
 
-    <a href="{{ path('app_artwork_new') }}">Create new</a>
-{% endblock %}
+<a href="{{ path('app_artwork_new') }}">Create new</a>{% endblock %}
