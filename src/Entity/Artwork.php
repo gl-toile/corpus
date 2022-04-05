@@ -2,8 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\ArtworkRepository;
+use App\Entity\Corpus;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ArtworkRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass=ArtworkRepository::class)
@@ -81,6 +84,28 @@ class Artwork
      * @ORM\Column(type="string", length=255)
      */
     private $mainImage;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="artworks")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="artworks")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Corpus::class, inversedBy="artworks")
+     */
+    private $corpus;
+
+    public function __construct()
+    {
+        $this->corpus = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -239,6 +264,54 @@ class Artwork
     public function setMainImage(string $mainImage): self
     {
         $this->mainImage = $mainImage;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Collection>
+     */
+    public function getCorpus(): Collection
+    {
+        return $this->corpus;
+    }
+
+    public function addCorpus(Corpus $corpus): self
+    {
+        if (!$this->corpus->contains($corpus)) {
+            $this->corpus[] = $corpus;
+        }
+
+        return $this;
+    }
+
+    public function removeCorpus(Corpus $corpus): self
+    {
+        $this->collection->removeElement($corpus);
 
         return $this;
     }
