@@ -104,6 +104,7 @@ class Artwork
 
     public function __construct()
     {
+        $this->createdAt = new \DateTimeImmutable();
         $this->corpus = new ArrayCollection();
     }
 
@@ -210,7 +211,7 @@ class Artwork
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->createdAt;
+        return $this->createdAt; 
     }
 
     public function setCreatedAt(\DateTimeInterface $createdAt): self
@@ -314,5 +315,10 @@ class Artwork
         $this->collection->removeElement($corpus);
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

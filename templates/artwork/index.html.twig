@@ -3,13 +3,33 @@
 {% block title %}Artwork index
 {% endblock %}
 
+
 {% block body %}
-	<h4 class="fw-bold py-3 mb-4">
-		<span class="text-muted fw-light">Artworks /</span>
-		Index
-	</h4>
 
-	{{ include('artwork/_show_table.html.twig') }}
+        <h4 class="fw-bold py-3 mb-0">
+                <span class="text-muted fw-light">Artworks /</span>
+                Index
+        </h4>
 
-	<a href="{{ path('app_artwork_new') }}">Create new</a>
+        {# <div class="btn-group btn-group-sm mt-0 mb-5">
+                <a href="{{ path('app_artwork_index', {'display_mode': 'table'}) }}" class="btn btn-primary {% if display_mode == " table" %} active {% endif %}">Tableau</a>
+                <a href="{{ path('app_artwork_index', {'display_mode': 'cards'}) }}" class="btn btn-primary {% if display_mode == " cards" %} active {% endif %}">Miniatures</a>
+        </div> #}
+
+        {# {% if(display_mode == 'table') %}
+                {{ include('artwork/_show_table.html.twig') }}
+        {% else %}
+                {{ include('artwork/_show_card.html.twig') }}
+        {% endif %} #}
+
+	 {{ include('artwork/_show_table.html.twig') }}
+
+        <div class="actions text-center align-items-center">
+                <ul class="d-inline-flex list-inline text-dark align-items-center">
+                        <li class="list-inline-item align-items-center">
+                                <a href="{{ path('app_artwork_new') }}" class="btn btn-primary mt-5 p-2 m-0 align-items-center">
+                                        <i class="bx bxs-image-add "></i>Nouvelle oeuvre</a>
+                        </li>
+                </ul>
+        </div>
 {% endblock %}

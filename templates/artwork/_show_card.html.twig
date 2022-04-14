@@ -1,0 +1,22 @@
+<!-- Basic Bootstrap Table -->
+ <h5 class="card-header">Toutes les oeuvres</h5>
+<section id="artworks">
+    <div class="container">
+        <div class="row gy-3 gx-3" data-masonry='{"percentPosition": true }'>
+            {% for artwork in artworks %}
+            <div class="col-12 col-md-3">
+                <div class="card">
+                <div class="card-header">
+                    <img src="{{ artwork.mainImage}}" class="card-img-top" alt="...">
+                </div>
+                <div class="card-body">
+                    <div class="card-title">{{ artwork.title}}</div>
+                    <p class="card-text">{{ artwork.ref }}</p>
+                </div>
+                <a href="{{ path('app_artwork_show', {'id': artwork.id}) }}"></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

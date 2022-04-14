@@ -3,11 +3,15 @@
 {% block title %}Edit Artwork{% endblock %}
 
 {% block body %}
+<div class="card">
+<div class="container p-5">
     <h1>Modifier l'oeuvre</h1>
 
     {{ include('artwork/_form.html.twig', {'button_label': 'Enregistrer'}) }}
 
-    <a href="{{ path('app_artwork_index') }}">Retour à la liste</a>
+    <a class="btn btn-secondary mt-1" href="{{ path('app_artwork_index') }}">Retour à la liste</a>
 
     {{ include('artwork/_delete_form.html.twig') }}
+    </div>
+    </div>
 {% endblock %}

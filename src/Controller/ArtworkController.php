@@ -16,16 +16,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArtworkController extends AbstractController
 {
     /**
-     * @Route("/", name="app_artwork_index", methods={"GET"})
-     */
-    public function index(ArtworkRepository $artworkRepository): Response
-    {
-        return $this->render('artwork/index.html.twig', [
-            'artworks' => $artworkRepository->findAll(),
-        ]);
-    }
-
-    /**
      * @Route("/new", name="app_artwork_new", methods={"GET", "POST"})
      */
     public function new(Request $request, ArtworkRepository $artworkRepository): Response
@@ -36,6 +26,7 @@ class ArtworkController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $artworkRepository->add($artwork);
+
             return $this->redirectToRoute('app_artwork_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -65,6 +56,7 @@ class ArtworkController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $artworkRepository->add($artwork);
+
             return $this->redirectToRoute('app_artwork_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -84,5 +76,15 @@ class ArtworkController extends AbstractController
         }
 
         return $this->redirectToRoute('app_artwork_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
+     * @Route("/", name="app_artwork_index", methods={"GET"})
+     */
+    public function index(ArtworkRepository $artworkRepository): Response
+    {
+        return $this->render('artwork/index.html.twig', [
+            'artworks' => $artworkRepository->findAll()
+        ]);
     }
 }

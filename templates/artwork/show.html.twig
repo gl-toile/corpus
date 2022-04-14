@@ -3,9 +3,14 @@
 {% block title %}Artwork{% endblock %}
 
 {% block body %}
-    <h1>Artwork</h1>
-
-    <table class="table">
+    <h1>{{ artwork.title }}</h1>
+    <div class="container">
+        <div class="row gx-5">
+            <div class="col-12 col-md-8">
+                <img src="{{ artwork.mainImage }}" alt="">
+            </div>
+            <div class="col-12 col-md-4">
+            <table class="table">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -65,8 +70,13 @@
             </tr>
         </tbody>
     </table>
+    </div>
+        </div>
+    </div>
 
-    <a href="{{ path('app_artwork_index') }}">back to list</a>
+    
+
+    <a href="{{ path('app_artwork_index', {'display_mode': 'table'}) }}">back to list</a>
 
     <a href="{{ path('app_artwork_edit', {'id': artwork.id}) }}">edit</a>
 

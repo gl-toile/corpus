@@ -6,6 +6,8 @@ use App\Entity\Artwork;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class ArtworkType extends AbstractType
 {
@@ -19,12 +21,13 @@ class ArtworkType extends AbstractType
             ->add('isToSold')
             ->add('isSold')
             ->add('price')
-            ->add('creationDate')
-            ->add('createdAt')
+            ->add('creationDate', DateType::class, ['format' =>'d-M-y'])
+            ->add('createdAt', DateType::class, ['format' =>'d-M-y'])
             ->add('description')
             ->add('isInCorpus')
             ->add('slug')
             ->add('mainImage')
+            ->add('category')
         ;
     }
 

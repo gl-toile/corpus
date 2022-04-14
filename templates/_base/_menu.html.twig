@@ -51,7 +51,7 @@
 		<li class="menu-item 
             {% if route_name == "app_artwork_index" %} active {% endif %}
             ">
-			<a href="{{ path('app_artwork_index') }}" class="menu-link">
+			<a href="{{ path('app_artwork_index', {'display_mode' : 'table'}) }}" class="menu-link">
 				<i class="menu-icon tf-icons bx bx-images"></i>
 				<div data-i18n="Analytics">Artworks</div>
 			</a>

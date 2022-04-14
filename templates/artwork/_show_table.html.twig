@@ -17,10 +17,10 @@
 					<tr>
 						<td><img src="{{ artwork.mainImage }}" style="max-height:50px"></td>
 						<td>
-							<strong>{{ artwork.title }}</strong>
+							<strong>{{ artwork.title | u.truncate(20, '...', false) }}</strong>
 						</td>
 						<td>{{ artwork.ref }}</td>
-						<td>{{ artwork.description | slice(0, 15) }}...</td>
+						<td>{{ artwork.description | u.truncate(20, '...', false)}}</td>
 						<td>
 							<div class="dropdown">
 								<button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">

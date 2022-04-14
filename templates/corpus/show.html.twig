@@ -26,6 +26,9 @@
         </tbody>
     </table>
 
+    {% set artworks = corpu.artworks %}
+    {% include 'artwork/_show_table.html.twig' %}
+
     <a href="{{ path('app_corpus_index') }}">back to list</a>
 
     <a href="{{ path('app_corpus_edit', {'id': corpu.id}) }}">edit</a>
