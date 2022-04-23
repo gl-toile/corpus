@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PhysicalLocation index{% endblock %}
+
+{% block body %}
+    <h1>PhysicalLocation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for physical_location in physical_locations %}
+            <tr>
+                <td>{{ physical_location.id }}</td>
+                <td>{{ physical_location.title }}</td>
+                <td>
+                    <a href="{{ path('app_physical_location_show', {'id': physical_location.id}) }}">show</a>
+                    <a href="{{ path('app_physical_location_edit', {'id': physical_location.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% import "physical_location/show_physical_locations.html.twig" as physical_locations %}
+{{ physical_locations.showAll(physical_locations[0])}}
+{{ physical_locations.showAll2(physical_locations[0])}}
+    <a href="{{ path('app_physical_location_new') }}">Create new</a>
+{% endblock %}

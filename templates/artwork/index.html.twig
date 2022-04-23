@@ -22,7 +22,7 @@
                 {{ include('artwork/_show_card.html.twig') }}
         {% endif %} #}
 
-	 {{ include('artwork/_show_table.html.twig') }}
+	{% include 'artwork/_show_table.html.twig' with { artworks: artworks } only %}
 
         <div class="actions text-center align-items-center">
                 <ul class="d-inline-flex list-inline text-dark align-items-center">

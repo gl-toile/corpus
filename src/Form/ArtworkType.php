@@ -28,6 +28,8 @@ class ArtworkType extends AbstractType
             ->add('slug')
             ->add('mainImage')
             ->add('category')
+            ->add('physicalLocation')
+            ->add('corpus')
         ;
     }
 

@@ -102,6 +102,11 @@ class Artwork
      */
     private $corpus;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=PhysicalLocation::class, inversedBy="artworks")
+     */
+    private $physicalLocation;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -319,6 +324,18 @@ class Artwork
 
     public function __toString()
     {
-        return $this->name;
+        return $this->title;
+    }
+
+    public function getPhysicalLocation(): ?PhysicalLocation
+    {
+        return $this->physicalLocation;
+    }
+
+    public function setPhysicalLocation(?PhysicalLocation $physicalLocation): self
+    {
+        $this->physicalLocation = $physicalLocation;
+
+        return $this;
     }
 }

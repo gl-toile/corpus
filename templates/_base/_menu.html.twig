@@ -83,6 +83,15 @@
 				<div data-i18n="Analytics">Categories</div>
 			</a>
 		</li>
+		 <!-- Emplacements -->
+		<li class="menu-item 
+            {% if route_name == "app_category_index" %} active {% endif %}
+            ">
+			<a href="{{ path('app_physical_location_index') }}" class="menu-link">
+				<i class="menu-icon tf-icons bx bx-category"></i>
+				<div data-i18n="Analytics">Emplacements</div>
+			</a>
+		</li>
 	</ul>
 
 </aside>

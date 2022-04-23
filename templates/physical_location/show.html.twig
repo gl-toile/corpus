@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PhysicalLocation{% endblock %}
+
+{% block body %}
+    <h1>PhysicalLocation</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ physical_location.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ physical_location.title }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_physical_location_index') }}">back to list</a>
+
+    <a href="{{ path('app_physical_location_edit', {'id': physical_location.id}) }}">edit</a>
+
+    {{ include('physical_location/_delete_form.html.twig') }}
+{% endblock %}
