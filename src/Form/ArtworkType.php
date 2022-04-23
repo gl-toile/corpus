@@ -30,6 +30,7 @@ class ArtworkType extends AbstractType
             ->add('category')
             ->add('physicalLocation')
             ->add('corpus')
+            ->add('isStar')
         ;
     }
 

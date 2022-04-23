@@ -10,18 +10,7 @@
                 <span class="text-muted fw-light">Artworks /</span>
                 Index
         </h4>
-
-        {# <div class="btn-group btn-group-sm mt-0 mb-5">
-                <a href="{{ path('app_artwork_index', {'display_mode': 'table'}) }}" class="btn btn-primary {% if display_mode == " table" %} active {% endif %}">Tableau</a>
-                <a href="{{ path('app_artwork_index', {'display_mode': 'cards'}) }}" class="btn btn-primary {% if display_mode == " cards" %} active {% endif %}">Miniatures</a>
-        </div> #}
-
-        {# {% if(display_mode == 'table') %}
-                {{ include('artwork/_show_table.html.twig') }}
-        {% else %}
-                {{ include('artwork/_show_card.html.twig') }}
-        {% endif %} #}
-
+        
 	{% include 'artwork/_show_table.html.twig' with { artworks: artworks } only %}
 
         <div class="actions text-center align-items-center">

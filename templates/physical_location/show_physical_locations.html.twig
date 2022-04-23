@@ -50,17 +50,61 @@
 {% macro showAll2(physical_location, depth=0) %}
         {% for location in physical_location.subLocations %}
             <div class="just-padding">
-                <div class="list-group list-group-root well rounded-0">
+                <div class="list-group list-group-root well bg-light border-0 rounded-0 py-0 px-0 h-100">
+                    {% if depth == 0 %}
+                    {% set iconpadding = 10 %}
+                    {% set iconmargin= 0 %}
+                    {% else %}
+                    {% set iconpadding = depth*10 %}
+                    {% set iconmargin = depth*10 %}
+                    {% endif %}
+                    <a 
+                    href="#item-{{location.id}}" 
+                    class="list-group-item fs-6 py-0 ps-1 border-0" 
+                    data-bs-toggle="collapse" 
+                    data-bs-target="#item-{{location.id}}"
+                    >
+                        <i class="bi bi-folder-fill me-1"></i>{{ location.title }}
+                    </a>
+                <div class="group-container ps-2">
+                    <div class="list-group collapse rounded-0 py-0 border-0 border-start" id="item-{{location.id}}"
+                    ">
+
+                    {{ _self.showAll2(location, depth+1) }}
+
+                    {% for artwork in location.artworks %}
+                    <a class="list-group-item bg-light border-0 py-0 ps-1" href="#" style="">
+                        <img src="{{artwork.mainImage}}" style="height:15px" class="img-fluid"/>
+                        {{ artwork.title }}
+                    </a>
+                    {% endfor %}
+                    </div>
+                </div>
+                </div>
+            </div>
+        {% endfor %}
+{% endmacro %}
+
+
+{% macro showAllOld(physical_location, depth=0) %}
+        {% for location in physical_location.subLocations %}
+            <div class="just-padding">
+                <div class="list-group list-group-root well bg-light rounded-0">
+                    {% if depth == 0 %}
+                    {% set iconpadding = 10 %}
+                    {% else %}
+                    {% set iconpadding = depth*25 %}
+                    {% endif %}
                     <a 
                     href="#item-{{location.id}}" 
                     class="list-group-item" 
                     data-bs-toggle="collapse" 
                     data-bs-target="#item-{{location.id}}"
-                    style="padding-left:{{depth*25}}px"
+                    style="padding-left:{{iconpadding}}px"
                     >
                         <i class="bi bi-folder-fill me-1"></i>{{ location.title }}
                     </a>
-                    <div class="list-group collapse" id="item-{{location.id}}">
+                    <div class="list-group collapse rounded-0" id="item-{{location.id}}">
 
                     {{ _self.showAll2(location, depth+1) }}
                         {% for artwork in location.artworks %}

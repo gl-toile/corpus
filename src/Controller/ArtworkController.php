@@ -5,10 +5,11 @@ namespace App\Controller;
 use App\Entity\Artwork;
 use App\Form\ArtworkType;
 use App\Repository\ArtworkRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/artwork")
@@ -86,5 +87,17 @@ class ArtworkController extends AbstractController
         return $this->render('artwork/index.html.twig', [
             'artworks' => $artworkRepository->findAll()
         ]);
+    }
+
+    /**
+     *
+     *
+     * @param Artwork $artwork
+     * @param ObjectManager $manager
+     * @return Response
+     */
+    public function addToFav(Artwork $artwork, ObjectManager $manager): Response
+    {
+        return null;
     }
 }

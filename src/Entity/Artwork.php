@@ -107,6 +107,11 @@ class Artwork
      */
     private $physicalLocation;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isStar;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -335,6 +340,18 @@ class Artwork
     public function setPhysicalLocation(?PhysicalLocation $physicalLocation): self
     {
         $this->physicalLocation = $physicalLocation;
+
+        return $this;
+    }
+
+    public function getIsStar(): ?bool
+    {
+        return $this->isStar;
+    }
+
+    public function setIsStar(bool $isStar): self
+    {
+        $this->isStar = $isStar;
 
         return $this;
     }

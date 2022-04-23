@@ -3,7 +3,55 @@
 {% block title %}PhysicalLocation index{% endblock %}
 
 {% block body %}
-    <h1>PhysicalLocation index</h1>
+
+{% import "physical_location/show_physical_locations.html.twig" as physical_locations %}
+
+<div class="row gx-0 bg-light border">
+    <div class="col-md-3 border-end p-0">
+    <div class="card h-100 w-100 m-0 shadow-none border-0 p-1 rounded-0">
+    <div class="card-header p-0 text-light rounded-0 text-uppercase fs-6">
+      Explorer
+    </div>
+    {{ physical_locations.showAll2(physical_locations[0])}}
+  </div>
+  
+    </div>
+    <div class="col-md-3 bg-light p-0 border-end">
+    <div class="card h-100 w-100 m-0 shadow-none border-0 p-1 rounded-0">
+    <div class="card-header p-0 text-light rounded-0 text-uppercase fs-6">
+      Détails
+    </div>
+                <form class="">
+                    <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label">Nom du dossier</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label">Description</label>
+                      <input type="password" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label">Icône : </label>
+                    <i class="bi bi-folder-fill"></i>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm">Enregistrer</button>
+                  </form>
+                </div>
+    </div>
+    <div class="col-md-6 p-0">
+        <div class="card h-100 w-100 m-0 shadow-none border-0 p-1 rounded-0">
+        <div class="card-header p-0 text-light rounded-0 text-uppercase fs-6">
+        Aperçu
+        </div>
+    </div>
+    </div>
+</div>
+
+{# {{ physical_locations.showAll(physical_locations[0])}} #}
+    <a href="{{ path('app_physical_location_new') }}">Create new</a>
+
+
+<h1>PhysicalLocation index</h1>
 
     <table class="table">
         <thead>
@@ -30,9 +78,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-{% import "physical_location/show_physical_locations.html.twig" as physical_locations %}
-{{ physical_locations.showAll(physical_locations[0])}}
-{{ physical_locations.showAll2(physical_locations[0])}}
-    <a href="{{ path('app_physical_location_new') }}">Create new</a>
 {% endblock %}
